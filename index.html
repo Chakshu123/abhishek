@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID Applications Across Industries</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .industry-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+        }
+        
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .tab-button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .tab-button.active::after {
+            width: 100%;
+        }
+        
+        .rfid-tag {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        
+        .benefit-item {
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .case-study-card {
+            transition: all 0.3s ease;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-counter {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">RFID Technology Applications</h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">Exploring how Radio-Frequency Identification transforms industries and educational institutions</p>
+        </header>
+        
+        <!-- Interactive Industry Selection -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="industry-card bg-gradient-to-br from-blue-600/80 to-blue-800/80 rounded-xl p-5 backdrop-blur-sm shadow-lg" data-industry="education">
+                <div class="flex items-center h-full">
+                    <div class="mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Educational Institutions</h3>
+                        <p class="text-blue-100">Student tracking, library management, access control</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="industry-card bg-gradient-to-br from-purple-600/80 to-purple-800/80 rounded-xl p-5 backdrop-blur-sm shadow-lg" data-industry="healthcare">
+                <div class="flex items-center h-full">
+                    <div class="mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-purple-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Healthcare</h3>
+                        <p class="text-purple-100">Patient tracking, medication management, equipment tracking</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="industry-card bg-gradient-to-br from-green-600/80 to-green-800/80 rounded-xl p-5 backdrop-blur-sm shadow-lg" data-industry="retail">
+                <div class="flex items-center h-full">
+                    <div class="mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Retail & Supply Chain</h3>
+                        <p class="text-green-100">Inventory management, anti-theft, checkout automation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Industry Content Sections -->
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-xl mb-12">
+            <!-- Tabs Navigation -->
+            <div class="flex flex-wrap border-b border-gray-600 mb-6">
+                <button class="tab-button active px-4 py-2 text-lg font-medium mr-4" data-tab="overview">Overview</button>
+                <button class="tab-button px-4 py-2 text-lg font-medium mr-4" data-tab="applications">Applications</button>
+                <button class="tab-button px-4 py-2 text-lg font-medium mr-4" data-tab="benefits">Benefits</button>
+                <button class="tab-button px-4 py-2 text-lg font-medium" data-tab="case-studies">Case Studies</button>
+            </div>
+            
+            <!-- Tab Content -->
+            <div id="industry-content">
+                <!-- Default Content - Education Overview -->
+                <div id="overview" class="tab-content active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4 text-blue-300">RFID in Educational Institutions</h2>
+                            <p class="mb-4">Educational institutions are increasingly adopting RFID technology to enhance security, streamline operations, and improve the overall learning experience. From kindergartens to universities, RFID solutions are transforming how educational facilities manage their resources and monitor student activities.</p>
+                            
+                            <p class="mb-6">RFID tags embedded in student ID cards, library books, and equipment allow for real-time tracking and management, reducing administrative burden while increasing security and efficiency.</p>
+                            
+                            <div class="bg-blue-900/30 rounded-lg p-4 mb-6">
+                                <h3 class="text-lg font-semibold mb-2 text-blue-200">Key Statistics</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <span class="stats-counter" data-value="68">0</span>% of universities use RFID for access control
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <span class="stats-counter" data-value="42">0</span>% reduction in library book loss
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <span class="stats-counter" data-value="75">0</span>% faster attendance tracking
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center">
+                            <div class="relative">
+                                <!-- RFID Card SVG -->
+                                <svg class="w-full max-w-md" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Card Background -->
+                                    <rect x="10" y="10" width="280" height="180" rx="10" fill="#1e40af" />
+                                    <rect x="15" y="15" width="270" height="170" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1" />
+                                    
+                                    <!-- RFID Chip -->
+                                    <g class="rfid-tag">
+                                        <rect x="30" y="30" width="40" height="40" rx="2" fill="#60a5fa" />
+                                        <path d="M35 50 H65 M45 40 V60 M55 40 V60" stroke="#1e3a8a" stroke-width="2" />
+                                    </g>
+                                    
+                                    <!-- RFID Waves -->
+                                    <path d="M80 35 Q95 20 80 50 Q95 80 80 65" stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.8">
+                                        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
+                                    </path>
+                                    <path d="M90 30 Q110 10 90 70 Q110 90 90 70" stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.6">
+                                        <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite" />
+                                    </path>
+                                    <path d="M100 25 Q125 0 100 75 Q125 100 100 75" stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.4">
+                                        <animate attributeName="opacity" values="0.1;0.4;0.1" dur="2s" repeatCount="indefinite" />
+                                    </path>
+                                    
+                                    <!-- Card Details -->
+                                    <text x="150" y="50" font-family="Inter, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">STUDENT ID CARD</text>
+                                    <text x="150" y="80" font-family="Inter, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">UNIVERSITY OF TECHNOLOGY</text>
+                                    
+                                    <text x="150" y="120" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">SARAH JOHNSON</text>
+                                    <text x="150" y="140" font-family="Inter, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">STUDENT ID: 2023-45678</text>
+                                    
+                                    <!-- Magnetic Strip -->
+                                    <rect x="15" y="160" width="270" height="20" fill="#111827" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="applications" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-300">RFID Applications in Education</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-white/5 rounded-lg p-5 border border-blue-900/50">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 text-white">Attendance Tracking</h3>
+                                        <p class="text-gray-300">RFID-enabled student ID cards automatically record attendance when students enter classrooms, eliminating manual roll calls and providing accurate attendance data. The system can send automated notifications to administrators or parents when students are absent.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-5 border border-blue-900/50">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 text-white">Access Control</h3>
+                                        <p class="text-gray-300">RFID cards regulate access to buildings, dormitories, laboratories, and other restricted areas, enhancing campus security. Access permissions can be customized based on student status, faculty role, or time of day.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-5 border border-blue-900/50">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 text-white">Cashless Payments</h3>
+                                        <p class="text-gray-300">RFID-enabled ID cards function as payment methods for cafeterias, vending machines, printing services, and bookstores. Parents can load funds remotely and monitor spending, while institutions reduce cash handling costs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white/5 rounded-lg p-5 border border-blue-900/50">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 text-white">Library Management</h3>
+                                        <p class="text-gray-300">RFID tags in books enable self-checkout systems, automated returns, and inventory management. Libraries can quickly locate misplaced books, conduct efficient inventory checks, and reduce theft while improving the borrowing experience.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-5 border border-blue-900/50">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 text-white">Exam Verification</h3>
+                                        <p class="text-gray-300">RFID technology verifies student identity during exams, preventing impersonation and ensuring academic integrity. The system can also track exam materials distribution and collection, reducing administrative workload.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-5 border border-blue-900/50">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 text-white">School Bus Tracking</h3>
+                                        <p class="text-gray-300">RFID systems monitor when students board and exit school buses, providing real-time location data to parents and administrators. Automated notifications alert parents when children arrive at school or return home.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="benefits" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="md:col-span-1">
+                            <h2 class="text-2xl font-bold mb-4 text-blue-300">Key Benefits</h2>
+                            <p class="mb-6">RFID technology offers numerous advantages for educational institutions, from operational efficiency to enhanced security and improved student experiences.</p>
+                            
+                            <div class="bg-gradient-to-br from-blue-900/40 to-blue-800/40 rounded-lg p-5 backdrop-blur-sm">
+                                <h3 class="text-lg font-semibold mb-3 text-blue-200">Implementation Considerations</h3>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>Initial infrastructure investment</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>Privacy and data security protocols</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>Staff training requirements</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>System integration with existing platforms</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-blue-500">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Enhanced Security</h3>
+                                    <p class="text-gray-300">RFID access control systems restrict unauthorized entry to campus buildings and sensitive areas, creating a safer environment for students and staff.</p>
+                                </div>
+                                
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-green-500">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Time Efficiency</h3>
+                                    <p class="text-gray-300">Automated attendance tracking, library checkouts, and access control save valuable time for students, faculty, and administrative staff.</p>
+                                </div>
+                                
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-yellow-500">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Improved Resource Management</h3>
+                                    <p class="text-gray-300">RFID tracking of equipment, books, and other assets reduces loss and theft while optimizing resource allocation and utilization.</p>
+                                </div>
+                                
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-purple-500">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Data-Driven Insights</h3>
+                                    <p class="text-gray-300">RFID systems generate valuable data on facility usage, student behavior, and resource utilization, enabling informed decision-making.</p>
+                                </div>
+                                
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-red-500">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Cost Reduction</h3>
+                                    <p class="text-gray-300">Despite initial investment, RFID systems reduce long-term costs through decreased manual labor, lower theft rates, and improved operational efficiency.</p>
+                                </div>
+                                
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-teal-500">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Enhanced Student Experience</h3>
+                                    <p class="text-gray-300">Streamlined processes for library checkouts, cafeteria payments, and building access create a more convenient campus experience for students.</p>
+                                </div>
+                                
+                                <div class="benefit-item bg-white/5 rounded-lg p-4 border-l-4 border-orange-500 md:col-span-2">
+                                    <h3 class="text-lg font-semibold mb-2 text-white">Return on Investment (ROI)</h3>
+                                    <div class="flex flex-wrap items-center justify-between">
+                                        <p class="text-gray-300 mb-2 md:mb-0 md:w-2/3">Educational institutions typically see positive ROI within 12-24 months of RFID implementation through reduced operational costs, improved asset management, and enhanced security.</p>
+                                        <div class="w-full md:w-1/3 pl-0 md:pl-4">
+                                            <div class="bg-gray-700 rounded-full h-4 w-full">
+                                                <div class="bg-gradient-to-r from-blue-400 to-teal-400 h-4 rounded-full" style="width: 85%"></div>
+                                            </div>
+                                            <div class="flex justify-between text-xs mt-1">
+                                                <span>1 Year</span>
+                                                <span>2 Years</span>
+                                                <span>3 Years</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="case-studies" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-300">Educational Institution Case Studies</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="case-study-card bg-white/5 rounded-lg overflow-hidden shadow-lg">
+                            <div class="bg-gradient-to-r from-blue-800 to-blue-900 p-4">
+                                <h3 class="text-xl font-bold text-white">Stanford University</h3>
+                                <p class="text-blue-200">Library Management System</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="mb-4 text-gray-300">Stanford implemented an RFID-based library management system across its 20+ campus libraries, tagging over 8.5 million items.</p>
+                                
+                                <h4 class="font-semibold text-white mb-2">Results:</h4>
+                                <ul class="space-y-2 mb-4">
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>65% reduction in checkout time</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>40% decrease in misplaced books</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Annual inventory time reduced from weeks to days</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="text-sm text-gray-400 italic">
+                                    "The RFID system has transformed our library operations, allowing staff to focus on higher-value activities while improving the student experience."
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study-card bg-white/5 rounded-lg overflow-hidden shadow-lg">
+                            <div class="bg-gradient-to-r from-purple-800 to-purple-900 p-4">
+                                <h3 class="text-xl font-bold text-white">University of Tokyo</h3>
+                                <p class="text-purple-200">Campus-wide Access Control</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="mb-4 text-gray-300">The university deployed an integrated RFID access control system across 120 buildings, issuing 35,000+ smart ID cards to students and staff.</p>
+                                
+                                <h4 class="font-semibold text-white mb-2">Results:</h4>
+                                <ul class="space-y-2 mb-4">
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>92% reduction in security incidents</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Eliminated costs of rekeying locks</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Real-time occupancy monitoring during emergencies</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="text-sm text-gray-400 italic">
+                                    "The RFID system has significantly enhanced our campus security while providing valuable data on facility usage patterns."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="case-study-card bg-white/5 rounded-lg overflow-hidden shadow-lg">
+                            <div class="bg-gradient-to-r from-green-800 to-green-900 p-4">
+                                <h3 class="text-xl font-bold text-white">Riverside K-12 School</h3>
+                                <p class="text-green-200">Attendance & Bus Tracking</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="mb-4 text-gray-300">Implemented RFID attendance tracking and school bus monitoring for 1,200 students across elementary, middle, and high school levels.</p>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">Attendance Accuracy</span>
+                                    <span class="text-sm text-white">99.8%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 99.8%"></div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">Parent Satisfaction</span>
+                                    <span class="text-sm text-white">94%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 94%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study-card bg-white/5 rounded-lg overflow-hidden shadow-lg">
+                            <div class="bg-gradient-to-r from-yellow-700 to-yellow-800 p-4">
+                                <h3 class="text-xl font-bold text-white">MIT Media Lab</h3>
+                                <p class="text-yellow-200">Equipment Tracking</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="mb-4 text-gray-300">Deployed RFID tracking for 5,000+ pieces of specialized research equipment and devices shared across 25 research groups.</p>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">Equipment Loss Reduction</span>
+                                    <span class="text-sm text-white">78%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">Utilization Improvement</span>
+                                    <span class="text-sm text-white">45%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study-card bg-white/5 rounded-lg overflow-hidden shadow-lg">
+                            <div class="bg-gradient-to-r from-red-800 to-red-900 p-4">
+                                <h3 class="text-xl font-bold text-white">Oxford University</h3>
+                                <p class="text-red-200">Exam Integrity System</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="mb-4 text-gray-300">Implemented RFID verification for exam identity verification and secure distribution of exam materials across 38 colleges.</p>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">Impersonation Incidents</span>
+                                    <span class="text-sm text-white">-100%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">Administrative Time Saved</span>
+                                    <span class="text-sm text-white">62%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 62%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other Industries Comparison -->
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-xl">
+            <h2 class="text-2xl font-bold mb-6 text-white">RFID Across Industries: Comparative Analysis</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-gray-800/50">
+                            <th class="px-4 py-3 rounded-tl-lg">Industry</th>
+                            <th class="px-4 py-3">Primary Applications</th>
+                            <th class="px-4 py-3">Key Benefits</th>
+                            <th class="px-4 py-3">Implementation Level</th>
+                            <th class="px-4 py-3 rounded-tr-lg">ROI Timeframe</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr class="bg-blue-900/20">
+                            <td class="px-4 py-4 font-medium">Education</td>
+                            <td class="px-4 py-4">Attendance tracking, library management, access control</td>
+                            <td class="px-4 py-4">Enhanced security, operational efficiency, improved student experience</td>
+                            <td class="px-4 py-4">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4">12-24 months</td>
+                        </tr>
+                        <tr class="bg-purple-900/20">
+                            <td class="px-4 py-4 font-medium">Healthcare</td>
+                            <td class="px-4 py-4">Patient tracking, medication management, equipment tracking</td>
+                            <td class="px-4 py-4">Reduced errors, improved patient safety, asset utilization</td>
+                            <td class="px-4 py-4">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-purple-500 h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4">8-18 months</td>
+                        </tr>
+                        <tr class="bg-green-900/20">
+                            <td class="px-4 py-4 font-medium">Retail</td>
+                            <td class="px-4 py-4">Inventory management, anti-theft, checkout automation</td>
+                            <td class="px-4 py-4">Reduced shrinkage, improved inventory accuracy, enhanced customer experience</td>
+                            <td class="px-4 py-4">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4">6-12 months</td>
+                        </tr>
+                        <tr class="bg-yellow-900/20">
+                            <td class="px-4 py-4 font-medium">Manufacturing</td>
+                            <td class="px-4 py-4">Production tracking, quality control, supply chain management</td>
+                            <td class="px-4 py-4">Increased productivity, reduced errors, improved traceability</td>
+                            <td class="px-4 py-4">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4">6-14 months</td>
+                        </tr>
+                        <tr class="bg-red-900/20">
+                            <td class="px-4 py-4 font-medium">Logistics</td>
+                            <td class="px-4 py-4">Shipment tracking, warehouse management, cold chain monitoring</td>
+                            <td class="px-4 py-4">Enhanced visibility, reduced labor costs, improved accuracy</td>
+                            <td class="px-4 py-4">
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4">4-10 months</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="mt-12 text-center text-gray-400 text-sm">
+        <p>Interactive RFID Technology Applications Showcase</p>
+    </footer>
+
+    <script>
+        // Initialize stats counters
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stats counters
+            const counters = document.querySelectorAll('.stats-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-value'));
+                const duration = 1500; // ms
+                const step = Math.ceil(target / (duration / 16)); // 60fps
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += step;
+                    if (current > target) current = target;
+                    counter.textContent = current;
+                    
+                    if (current < target) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                };
+                
+                updateCounter();
+            });
+            
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Deactivate all tabs
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Activate selected tab
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Industry card selection
+            const industryCards = document.querySelectorAll('.industry-card');
+            const industryContent = document.getElementById('industry-content');
+            
+            industryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const industry = card.getAttribute('data-industry');
+                    updateIndustryContent(industry);
+                    
+                    // Visual feedback
+                    industryCards.forEach(c => c.classList.remove('ring-4', 'ring-white'));
+                    card.classList.add('ring-4', 'ring-white');
+                });
+            });
+            
+            function updateIndustryContent(industry) {
+                // This would typically fetch or switch content based on the selected industry
+                // For this demo, we'll just show a notification
+                
+                if (industry !== 'education') {
+                    // Reset to first tab
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    tabButtons[0].classList.add('active');
+                    tabContents[0].classList.add('active');
+                    
+                    // Update header text based on industry
+                    const headers = {
+                        'healthcare': 'RFID in Healthcare',
+                        'retail': 'RFID in Retail & Supply Chain',
+                        'education': 'RFID in Educational Institutions'
+                    };
+                    
+                    document.querySelector('#overview h2').textContent = headers[industry] || 'RFID Applications';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
